@@ -18,25 +18,25 @@ public class LambdaStepTest {
     private static final int issue_number = 1;
 
     @Test
-    public void testGithubIssue(){
-      SelenideLogger.addListener("allure", new AllureSelenide());
+    public void testGithubIssue() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Open the main page", () -> {
             open("http://github.com");
-                });
+        });
 
-        step("Looking for a repository" + repository , () -> {
+        step("Looking for a repository" + repository, () -> {
             $(".header-search-input").click();
             $(".header-search-input").sendKeys(repository);
             $(".header-search-input").submit();
         });
-        step("click on the repository link" + repository, () -> {
+        step("Click on the repository link" + repository, () -> {
             $(linkText(repository)).click();
         });
-        step("click on tab issue", () -> {
+        step("Click on tab issue", () -> {
             $(partialLinkText("Issue")).click();
         });
-        step("check that there is an issue with the number" + issue_number, () -> {
+        step("Check that there is an issue with the number" + issue_number, () -> {
             $(withText("#1")).should(Condition.visible);
         });
 
